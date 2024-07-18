@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" class="form-signin">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }},
+                            {% if app.user.typecompte=='moniteur' %}
+
+                                <a href="{{ path('app_moniteur_espace_moniteur') }}" class="btn btn-info">Retour à l'espace moniteur</a>
+                            {% else %}
+                                <a href="{{ path('app_eleve_espace_eleve') }}" class="btn btn-info">Retour à l'espace élève</a>
+
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    <h1 class="h3 mb-3 font-weight-normal text-center">Please sign in</h1>
+                    <label for="inputEmail" class="sr-only">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" autocomplete="email" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" value="{{ pass }}" name="password" id="inputPassword" class="form-control" placeholder="Password" autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

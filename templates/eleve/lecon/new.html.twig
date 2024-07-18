@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Lecon{% endblock %}
+
+{% block body %}
+    <h1>Create new Lecon</h1>
+
+    {{ include('eleve/lecon/_form.html.twig') }}
+
+    <a href="{{ path('app_eleve_lecon_index') }}">back to list</a>
+{% endblock %}

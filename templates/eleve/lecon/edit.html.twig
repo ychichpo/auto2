@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Lecon{% endblock %}
+
+{% block body %}
+    <h1>Edit Lecon</h1>
+
+    {{ include('eleve/lecon/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_eleve_lecon_index') }}">back to list</a>
+
+    {{ include('eleve/lecon/_delete_form.html.twig') }}
+{% endblock %}

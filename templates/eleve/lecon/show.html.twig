@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lecon{% endblock %}
+
+{% block body %}
+    <h1>Lecon</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lecon.id }}</td>
+            </tr>
+            <tr>
+                <th>Reglee</th>
+                <td>{{ lecon.reglee ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Rdv</th>
+                <td>{{ lecon.rdv ? lecon.rdv|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eleve_lecon_index') }}">back to list</a>
+
+    <a href="{{ path('app_eleve_lecon_edit', {'id': lecon.id}) }}">edit</a>
+
+    {{ include('eleve/lecon/_delete_form.html.twig') }}
+{% endblock %}

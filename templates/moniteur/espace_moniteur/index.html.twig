@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EspaceEleveController!{% endblock %}
+
+{% block body %}
+    <style>
+        .fixed-right-column { position: fixed; right: 0; width: 20%; }
+        .content-center { width: 60%; }
+        .nav-column { width: 20%; }
+    </style>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Colonne de navigation à gauche -->
+            <div class="col-md-3 nav-column" style="padding-top: 20px">
+                <div style="text-align: center;padding-bottom: 30px;">
+                    <span style="font-family: 'American Typewriter';font-size: 20px;">
+
+                        Auto école</span></div>
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-categories-tab" data-toggle="pill" href="#categories" role="tab" aria-controls="v-pills-categories" aria-selected="true">Les Catégories</a>
+                    <a class="nav-link" id="v-pills-vehicules-tab" data-toggle="pill" href="#vehicules" role="tab" aria-controls="v-pills-vehicules" aria-selected="false">Les véhicules</a>
+                    <a class="nav-link " id="v-pills-licences-tab" data-toggle="pill" href="#licences" role="tab" aria-controls="v-pills-licences" aria-selected="false">Mes licences</a>
+
+                </div>
+            </div>
+
+            <!-- Contenu central pour la table -->
+            <div class="col-md-6 content-center" style="padding-top: 40px">
+                <div class="tab-content" id="v-pills-tabContent">
+
+                    <div class="tab-pane fade show active" id="categories" role="tabpanel" aria-labelledby="v-pills-categories-tab">
+                        <a href="{{ path('app_moniteur_categorie_index') }}" class="btn btn-info">Visualiser les catégories</a>
+
+                        {% include 'moniteur/categorie/index.html.twig' %}
+
+                    </div>
+                    <div class="tab-pane fade" id="vehicules" role="tabpanel" aria-labelledby="v-pills-vehicules-tab">
+                        <a href="{{ path('app_moniteur_vehicule_index') }}" class="btn btn-info">Visualiser les voitures</a>
+
+                        {% include 'moniteur/vehicule/index.html.twig' %}
+
+                    </div>
+                    <div class="tab-pane fade e" id="licences" role="tabpanel" aria-labelledby="v-pills-licences-tab">
+
+                        <a href="{{ path('app_moniteur_licence_index') }}" class="btn btn-info">Visualiser toutes les licences</a>
+
+                        {% include 'moniteur/licence/index.html.twig' %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne de droite fixe avec les informations de l'élève -->
+            <div class="col-md-3 fixed-right-column" style="padding-top: 20px">
+                <div class="card" >
+                    <div class="card-body">
+                        <h5 class="card-title">Informations du moniteur</h5>
+                        <p class="card-text">Nom : {{ user.nom }}</p>
+                        <p class="card-text">Prénom : {{ user.prenom }}</p>
+                        <p class="card-text">Email : {{ user.email }}</p>
+                        <p class="card-text">Adresse : {{ user.adresse }}{{ user.PostalCode }}{{ user.city }}</p>
+                        <p class="card-text">Télephone : {{ user.phone }}</p>
+                        <p class="card-text">Date de naissance : {{ user.BirthdayDate|date('d/m/Y') }}
+                        </p>
+                    </div>
+                    <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

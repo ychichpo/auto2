@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Licence{% endblock %}
+
+{% block body %}
+    <h1>Create new Licence</h1>
+
+    {{ include('moniteur/licence/_form.html.twig') }}
+
+    <a href="{{ path('app_moniteur_licence_index') }}">back to list</a>
+{% endblock %}

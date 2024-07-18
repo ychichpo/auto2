@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Toutes les catégories</h1>
+
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Libelle</th>
+                <th>Prix</th>
+                {% if user.typecompte=='moniteur' %}
+                <th>Actions</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>{{ categorie.libelle }}</td>
+                    <td>{{ categorie.prix }} €</td>
+
+                        {% if user.typecompte=='moniteur' %}
+                            <td>
+                            <a href="{{ path('app_moniteur_categorie_show', {'id': categorie.id}) }}" class="btn btn-primary btn-sm">Voir</a>
+                            <a href="{{ path('app_moniteur_categorie_edit', {'id': categorie.id}) }}" class="btn btn-secondary btn-sm">Modifier</a>
+                            </td>
+                        {% endif %}
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if user.typecompte=='moniteur' %}
+
+                <a href="{{ path('app_moniteur_espace_moniteur') }}" class="btn btn-info">Retour à l'espace moniteur</a>
+            {% else %}
+                <a href="{{ path('app_eleve_espace_eleve') }}" class="btn btn-info">Retour à l'espace élève</a>
+
+        {% endif %}
+        <a href="{{ path('app_moniteur_categorie_new') }}" class="btn btn-info">Créer</a>
+    </div>
+{% endblock %}

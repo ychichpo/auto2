@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Licence{% endblock %}
+
+{% block body %}
+    <h1>Edit Licence</h1>
+
+    {{ include('moniteur/licence/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_moniteur_licence_index') }}">back to list</a>
+
+    {{ include('moniteur/licence/_delete_form.html.twig') }}
+{% endblock %}
